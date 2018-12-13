@@ -1,9 +1,22 @@
-const express = require('express');
-const http = require('http');
-const app = express()
-var router = express.Router(); //配置路由 这样访问localhost/select就能访问的接口了
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-app.use('/select', require('./select'))
-app.use(router);
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var categoryRouter = require('./routes/category');
 
-app.listen(8080);
+var app = express();
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/category', categoryRouter);
+
+module.exports = app;

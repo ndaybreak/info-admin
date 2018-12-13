@@ -1,9 +1,6 @@
 const express = require('express');
-const http = require('http');
-
-const app = express()
 var router = express.Router();
-const connection = require('./mysql');//导入mysq配置文件 
+const connection = require('./connection');//导入mysq配置文件
 
 
 connection.connect(function (err) {
@@ -15,7 +12,7 @@ connection.connect(function (err) {
 });
 
 
-app.get('/', function (req, res) {
+router.get('/all', function (req, res) {
     var res = res;
     var req = req; //执行SQL语句,这里是一条简单的MySQL查询语句
     var sql = "select * from category";
@@ -29,4 +26,4 @@ app.get('/', function (req, res) {
 })
 
 
-module.exports = app
+module.exports = router

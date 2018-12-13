@@ -1,10 +1,7 @@
-
-
-//mysql.js 
-var mysql = require('mysql'); //调用MySQL模块 
+var connection = require('mysql'); //调用MySQL模块
 
 //创建一个connection 
-var connection = mysql.createConnection({ 
+var connection = connection.createConnection({
 	host: 'localhost', //主机 
 	user: 'root', //数据库用户名 
 	password: 'xiaoMing0', //数据库密码 
