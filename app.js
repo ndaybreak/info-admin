@@ -6,4 +6,4 @@ var router = express.Router(); //配置路由 这样访问localhost/select就能
 app.use('/select', require('./select'))
 app.use(router);
 
-app.listen(80);
+app.listen(8080);

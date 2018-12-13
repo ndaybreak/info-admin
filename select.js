@@ -18,16 +18,13 @@ connection.connect(function (err) {
 app.get('/', function (req, res) {
     var res = res;
     var req = req; //执行SQL语句,这里是一条简单的MySQL查询语句
-    var sql = "select * from book where name='book_1'";
+    var sql = "select * from category";
     connection.query(sql, function (err, rows, fields) {
         if (err) {
             console.log('[query] - :' + err);
             return;
         }
-        console.log(rows)
         res.send(rows) //这里在页面上输出数据
-        console.log('The rows is: ', rows[0]);
-        console.log('fields=', fields)
     });
 })
 
