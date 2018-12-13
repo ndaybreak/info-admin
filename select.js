@@ -1,39 +1,35 @@
+const express = require('express');
+const http = require('http');
 
-
-const express = require('express'); 
-const http = require('http'); 
-
-const app = express() 
-var router = express.Router(); 
+const app = express()
+var router = express.Router();
 const connection = require('./mysql');//导入mysq配置文件 
 
 
+connection.connect(function (err) {
+    if (err) {
+        console.log('[query] - :' + err);
+        return;
+    }
+    console.log('[connection connect] succeed!'); //如果连接成功 控制台输出 success 了
+});
 
 
-connection.connect(function(err) { 
-	if (err) { 
-		console.log('[query] - :' + err); return; 
-	} 
-	console.log('[connection connect] succeed!'); //如果连接成功 控制台输出 success 了 
-}); 
-
-
-
-app.get('/', function(req, res) { 
-	var res = res; 
-	var req = req; //执行SQL语句,这里是一条简单的MySQL查询语句 
-	var sql = "select * from book where name='book_1'"; 
-	connection.query(sql, function(err, rows, fields) { 
-		if (err) { 
-			console.log('[query] - :' + err); 
-			return; 
-		} 
-		console.log(rows) 
-		res.send(rows) //这里在页面上输出数据 
-		console.log('The rows is: ', rows[0]); 
-		console.log('fields=', fields)
-	}); 
+app.get('/', function (req, res) {
+    var res = res;
+    var req = req; //执行SQL语句,这里是一条简单的MySQL查询语句
+    var sql = "select * from book where name='book_1'";
+    connection.query(sql, function (err, rows, fields) {
+        if (err) {
+            console.log('[query] - :' + err);
+            return;
+        }
+        console.log(rows)
+        res.send(rows) //这里在页面上输出数据
+        console.log('The rows is: ', rows[0]);
+        console.log('fields=', fields)
+    });
 })
 
 
- module.exports = app
+module.exports = app
