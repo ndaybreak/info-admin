@@ -7,7 +7,8 @@ var connection = connection.createConnection({
 	password: 'xiaoMing0', //数据库密码 
 	port: '3306', 
 	database: 'nxm', //数据库名称 
-	charset: 'UTF8_GENERAL_CI' //数据库编码 
+	charset: 'UTF8_GENERAL_CI', //数据库编码
+    multipleStatements: true // 允许同时执行多条语句
 }); 
 
 module.exports = connection 
